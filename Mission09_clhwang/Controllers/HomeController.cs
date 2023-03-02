@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Mission09_clhwang.Models;
+using Mission09_clhwang.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,11 +19,22 @@ namespace Mission09_clhwang.Controllers
         {
             int pageSize = 5;
 
-            var blah = repo.Books
+            var x = new BooksViewModel
+            {
+                Books = repo.Books
                 .OrderBy(b => b.Title)
-                .Skip(pageNum * pageSize)
-                .Take(pageSize);
-            return View(blah);
+                .Skip((pageNum - 1) * pageSize)
+                .Take(pageSize),
+
+                PageInfo = new PageInfo
+                {
+                    TotalNumBooks = repo.Books.Count(),
+                    BooksPerPage = pageSize,
+                    CurrentPage = pageNum
+                }
+            };
+
+            return View(x);
         }
     }
 }

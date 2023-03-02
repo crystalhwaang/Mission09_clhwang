@@ -1,11 +1,11 @@
 ﻿@{
 }
 
-@model IQueryable<Book>
+@model BooksViewModel
 
 <h1>The Bookstore</h1>
 
-@foreach (Book b in Model)
+@foreach (Book b in Model.Books)
 { 
     <h3>@b.Title</h3>
 
@@ -21,3 +21,5 @@
 
     <br />
 }
+
+<div page-meh="@Model.PageInfo" page-action="Index"></div>
