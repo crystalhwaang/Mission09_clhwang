@@ -4,10 +4,8 @@ using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using Mission09_clhwang.Models.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
+//Creating the tag helpers at the bottom of the page
 
 namespace Mission09_clhwang.Infrastructure
 {
@@ -26,6 +24,11 @@ namespace Mission09_clhwang.Infrastructure
         public ViewContext vc { get; set; }
         public PageInfo PageMeh { get; set; }
         public string PageAction { get; set; }
+        //Needed for CSS at the bottom of the page
+        public bool PageClassesEnabled { get; set; }
+        public string PageClass { get; set; }
+        public string PageClassNormal { get; set; }
+        public string PageClassSelected { get; set; }
         public override void Process (TagHelperContext thc, TagHelperOutput tho)
         {
             IUrlHelper uh = uhf.GetUrlHelper(vc);
@@ -34,6 +37,12 @@ namespace Mission09_clhwang.Infrastructure
             {
                 TagBuilder tb = new TagBuilder("a");
                 tb.Attributes["href"] = uh.Action(PageAction, new { pageNum = i });
+                //Adding CSS to the links at the bottom of the page
+                if (PageClassesEnabled)
+                {
+                    tb.AddCssClass(PageClass);
+                    tb.AddCssClass(i == PageMeh.CurrentPage ? PageClassSelected : PageClassNormal);
+                }
                 tb.InnerHtml.Append(i.ToString());
 
                 final.InnerHtml.AppendHtml(tb);
