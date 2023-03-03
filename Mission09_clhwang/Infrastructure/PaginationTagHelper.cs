@@ -30,7 +30,7 @@ namespace Mission09_clhwang.Infrastructure
         {
             IUrlHelper uh = uhf.GetUrlHelper(vc);
             TagBuilder final = new TagBuilder("div");
-            for (int i = 1; i < PageMeh.TotalPages; i++)
+            for (int i = 1; i <= PageMeh.TotalPages; i++)
             {
                 TagBuilder tb = new TagBuilder("a");
                 tb.Attributes["href"] = uh.Action(PageAction, new { pageNum = i });
