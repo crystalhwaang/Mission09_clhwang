@@ -14,6 +14,7 @@ namespace Mission09_clhwang.Components
         {
             repo = temp;
         }
+        //Separating the books into pages of their respective categories
         public IViewComponentResult Invoke()
         {
             ViewBag.SelectedType = RouteData?.Values["bookstoreType"];
