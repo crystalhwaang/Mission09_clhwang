@@ -6,6 +6,12 @@
 
 <h1>The Bookstore</h1>
 
+<ul class="breadcrumb">
+    <li>
+        <a asp-controller="Home" asp-action="Index">Home</a>
+    </li>
+</ul>
+
 @foreach (Book b in Model.Books)
     {
         <partial name="BookSummary" model="b" />
