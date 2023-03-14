@@ -10,7 +10,7 @@
 
 @foreach (string t in Model)
 {
-    <li asp-controller="Home" asp-action="Index" asp-route-bookstoreType="@t" asp-route-pageNum="1"
-        class="btn @(ViewBag.SelectedType == t ? "btn-primary" : "btn-outline-secondary")">@t</li>
+    <a asp-controller="Home" asp-action="Index" asp-route-bookstoreType="@t" asp-route-pageNum="1"
+        class="btn @(ViewBag.SelectedType == t ? "btn-primary" : "btn-outline-secondary")">@t</a>
     <br />
 }
